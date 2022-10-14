@@ -1,13 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { createStore } from "redux";
+import { favoriteReducer } from "./redux/reducers/favorite.reducer";
+import { Provider } from "react-redux";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { todoReducer } from "./redux/reducers/todos.reducer";
+import mainReducer from "./redux/reducers";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//const store = createStore(favoriteReducer);
+const store = createStore(todoReducer);
+
+//const store = createStore(mainReducer);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
